@@ -1,0 +1,302 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+@font-face {
+  font-family: FFFFORWA;
+  src: url(FFFFORWA.TTF); }
+
+.App {
+  text-align: center; }
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px; }
+
+.App-header {
+  background-color: #222;
+  padding: 20px;
+  color: white; }
+
+.App-title {
+  font-size: 1.5em; }
+
+.App-intro {
+  font-size: large; }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+.Card {
+  margin: 0.25rem;
+  user-select: none;
+  position: relative;
+  width: calc(5.5rem * 1);
+  height: calc(8.5rem * 1);
+  font-family: FFFFORWA;
+  font-stretch: condensed;
+  font-style: normal;
+  cursor: default;
+  font-weight: 100;
+  font-size: 0.675rem;
+  pointer-events: auto;
+  transform-origin: bottom;
+  transform: scale(1) translateY(0);
+  transition: all .05s ease-in-out;
+  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 2px; */ }
+  .Card,
+  .Card *, .Card:focus,
+  .Card *:focus {
+    outline: none; }
+  .Card .CardInfo {
+    left: calc(100% + 0.25rem);
+    display: none;
+    color: #EEEEEE;
+    font-size: 5px;
+    padding: 0.25rem;
+    position: relative;
+    pointer-events: none;
+    border-radius: 0.125rem;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
+    background-color: rgba(66, 66, 66, 0.75);
+    border: 1px solid rgba(166, 166, 166, 0.75); }
+    .Card .CardInfo .CardEffects {
+      font-size: 0.85em;
+      margin-top: 0.25rem; }
+  .Card[alreadyUsed="false"][draggable="true"] {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px 3px; }
+  .Card[marked="true"] {
+    box-shadow: rgba(0, 144, 255, 0.5) 0px 2px 4px 2px !important; }
+  .Card[hoverable="true"]:hover, .Card[hoverable="dynamic"]:not([type=""]):hover {
+    z-index: 1;
+    /* width: calc(5.5rem * 2);
+        height: calc(8.5rem * 2); */
+    transform: scale(1.75) translateY(-0.25rem); }
+    .Card[hoverable="true"]:hover .CardFG,
+    .Card[hoverable="true"]:hover .CardBG, .Card[hoverable="dynamic"]:not([type=""]):hover .CardFG,
+    .Card[hoverable="dynamic"]:not([type=""]):hover .CardBG {
+      box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.25); }
+    .Card[hoverable="true"]:hover .CardName, .Card[hoverable="dynamic"]:not([type=""]):hover .CardName {
+      text-shadow: 0px 1.25px 1px rgba(0, 0, 0, 0.5); }
+    .Card[hoverable="true"]:hover .CardInfo, .Card[hoverable="dynamic"]:not([type=""]):hover .CardInfo {
+      display: block; }
+    .Card[hoverable="true"]:hover .CardCorner, .Card[hoverable="dynamic"]:not([type=""]):hover .CardCorner {
+      text-shadow: 0px 2.5px 5px rgba(0, 0, 0, 0.75); }
+  .Card[draggable="true"]:hover {
+    cursor: pointer; }
+  .Card .CardFG {
+    transform: rotateY(0deg);
+    background: url(/Cards/Card%20Front.png) center center no-repeat; }
+  .Card .CardBG {
+    transform: rotateY(180deg);
+    background: url(/Cards/Card%20Back.png) center center no-repeat; }
+  .Card .CardFG,
+  .Card .CardBG {
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
+  .Card[fOb="back"] .CardFG {
+    transform: rotateY(180deg); }
+  .Card[fOb="back"] .CardBG {
+    transform: rotateY(360deg); }
+  .Card .CardFG,
+  .Card .CardBG,
+  .Card .CardFace {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    backface-visibility: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor; }
+    .Card .CardFG canvas,
+    .Card .CardBG canvas,
+    .Card .CardFace canvas {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute; }
+  .Card .CardName {
+    left: 50%;
+    bottom: 10%;
+    position: absolute;
+    transform: translateX(-50%); }
+  .Card .CardCorner {
+    top: 0;
+    left: 0;
+    padding: 0.175rem;
+    position: absolute;
+    text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.175); }
+    .Card .CardCorner[posX="R"] {
+      right: 0;
+      left: initial; }
+    .Card .CardCorner[posY="B"] {
+      bottom: 0;
+      top: initial; }
+    .Card .CardCorner[ctype="AP"] {
+      color: #CCD1D9; }
+    .Card .CardCorner[ctype="HP"] {
+      color: #D8334A; }
+    .Card .CardCorner[ctype="roundsLeft"] {
+      color: #000000; }
+    .Card .CardCorner[ctype="MPS"] {
+      color: #37BC9B; }
+  .Card[fOb="back"] .CardFace,
+  .Card[fOb="back"] .CardInfo,
+  .Card[fOb="back"] .CardCorner,
+  .Card[type=""] .CardFace,
+  .Card[type=""] .CardInfo,
+  .Card[type=""] .CardCorner {
+    display: none; }
+
+.App-game {
+  display: block; }
+  .App-game .App-game-menu-toggle {
+    top: 50%;
+    left: 100%;
+    z-index: 2;
+    padding: 0.5rem;
+    position: absolute;
+    border-radius: 0.25rem;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    transform: translate(-100%, -50%); }
+  .App-game .App-game-info {
+    margin-top: 0.5rem;
+    display: block; }
+  .App-game.show-menu-true .App-game-decks {
+    display: none; }
+  .App-game .App-game-decks {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    position: absolute; }
+    .App-game .App-game-decks .currentPlayer {
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      padding: 0.5rem;
+      position: absolute;
+      border-radius: 0.25rem;
+      background-color: #FFFFFF;
+      border: 2px solid #000000;
+      transform: translate(-50%, -50%); }
+    .App-game .App-game-decks .deck {
+      top: 0;
+      width: 100%;
+      height: 50%;
+      display: block;
+      position: absolute;
+      background-color: #DDDDDD; }
+      .App-game .App-game-decks .deck .PlayerInfo {
+        bottom: 0;
+        z-index: 2;
+        display: block;
+        position: absolute; }
+        .App-game .App-game-decks .deck .PlayerInfo .MP,
+        .App-game .App-game-decks .deck .PlayerInfo .HP {
+          width: 1.25rem;
+          height: 1.25rem;
+          padding: 0.175rem;
+          border-radius: 50%; }
+        .App-game .App-game-decks .deck .PlayerInfo .MP {
+          background-color: lightblue;
+          border: 1px solid lightseagreen; }
+        .App-game .App-game-decks .deck .PlayerInfo .HP {
+          background-color: lightpink;
+          border: 1px solid lightcoral; }
+      .App-game .App-game-decks .deck .deck-onHand,
+      .App-game .App-game-decks .deck .deck-onField,
+      .App-game .App-game-decks .deck .deck-inBlock {
+        z-index: 2;
+        display: block;
+        position: absolute;
+        min-width: calc(5.5rem + 0.25rem * 2);
+        min-height: calc(8.5rem + 0.25rem * 2); }
+        .App-game .App-game-decks .deck .deck-onHand .Card,
+        .App-game .App-game-decks .deck .deck-onField .Card,
+        .App-game .App-game-decks .deck .deck-inBlock .Card {
+          float: left; }
+      .App-game .App-game-decks .deck .deck-onHand {
+        top: 0;
+        transform: scale(0.5);
+        transform-origin: top;
+        background-color: #00FF00;
+        max-width: calc(100% - 5.5rem - 0.25rem * 2); }
+        .App-game .App-game-decks .deck .deck-onHand .Card {
+          width: calc(4rem); }
+          .App-game .App-game-decks .deck .deck-onHand .Card .CardFG,
+          .App-game .App-game-decks .deck .deck-onHand .Card .CardBG {
+            width: calc(5.5rem * 1); }
+      .App-game .App-game-decks .deck .deck-onField {
+        z-index: 1;
+        bottom: 1.25rem;
+        padding: 0 8.5rem;
+        background-color: #FF0000; }
+        .App-game .App-game-decks .deck .deck-onField .Card {
+          float: right; }
+      .App-game .App-game-decks .deck .deck-inBlock {
+        top: 0;
+        left: 0;
+        background-color: #0000FF;
+        width: calc(5.5rem + 0.25rem * 2);
+        height: calc(8.5rem + 0.25rem * 2); }
+        .App-game .App-game-decks .deck .deck-inBlock .deck-inBlock-nr {
+          top: 50%;
+          left: 50%;
+          z-index: 1;
+          position: absolute;
+          transform: translate(-50%, -50%); }
+        .App-game .App-game-decks .deck .deck-inBlock .Card {
+          position: absolute; }
+      .App-game .App-game-decks .deck[ooe="own"] {
+        bottom: 0;
+        top: initial;
+        background-color: #AAAAAA; }
+        .App-game .App-game-decks .deck[ooe="own"] .PlayerInfo {
+          top: 0;
+          bottom: initial; }
+        .App-game .App-game-decks .deck[ooe="own"] .deck-onHand {
+          bottom: 0;
+          top: initial;
+          left: initial;
+          transform-origin: bottom;
+          transform: scale(0.5) translateY(0%);
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+          .App-game .App-game-decks .deck[ooe="own"] .deck-onHand:hover {
+            transform: scale(0.75) translateY(0%); }
+        .App-game .App-game-decks .deck[ooe="own"] .deck-onField {
+          top: 1.25rem;
+          bottom: initial; }
+          .App-game .App-game-decks .deck[ooe="own"] .deck-onField .Card {
+            float: left; }
+        .App-game .App-game-decks .deck[ooe="own"] .deck-inBlock {
+          right: 0;
+          bottom: 0;
+          top: initial;
+          left: initial; }
+ 
+
+ /*# sourceMappingURL= index.min.css.map */
